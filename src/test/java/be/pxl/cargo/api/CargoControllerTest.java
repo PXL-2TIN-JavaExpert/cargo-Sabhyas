@@ -35,17 +35,17 @@ class CargoControllerTest {
     @MockBean
     private CargoService cargoService;
 
-        @Test
-        void addCargoReturnsCreated() throws Exception {
+    @Test
+    void addCargoReturnsCreated() throws Exception {
         CreateCargoRequest request = new CreateCargoRequest("CARGO_01", 500, Location.SEA_PORT_Z, Location.CITY_B);
 
         mockMvc.perform(post("/cargos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(request)))
-            .andExpect(status().isCreated());
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isCreated());
 
         verify(cargoService).createCargo(any(CreateCargoRequest.class));
-        }
+    }
 
     @Test
     void addCargoReturnsBadRequestForInvalidPayload() throws Exception {
@@ -75,12 +75,4 @@ class CargoControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.statusCount.MOVING").value(1));
     }
-}package be.pxl.cargo.api;
-
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-
-@WebMvcTest(CargoController.class)
-public class CargoControllerTest {
-
-
 }

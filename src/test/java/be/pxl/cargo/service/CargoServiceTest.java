@@ -59,10 +59,8 @@ class CargoServiceTest {
     @Test
     void getCargoStatisticsCalculatesAggregates() {
         Cargo movingCargo = new Cargo("CARGO_01", 500, Location.SEA_PORT_Z, Location.CITY_B);
-
         Cargo transitCargo = new Cargo("CARGO_02", 800, Location.SEA_PORT_Z, Location.CITY_B);
         transitCargo.arrive(Location.WAREHOUSE_A);
-
         Cargo deliveredCargo = new Cargo("CARGO_03", 1200, Location.SEA_PORT_Z, Location.CITY_B);
         deliveredCargo.arrive(Location.CITY_B);
 
@@ -76,12 +74,4 @@ class CargoServiceTest {
         assertEquals(1L, statistics.getCountCargosAtWarehouseA());
         assertEquals(1200.0, statistics.getTotalWeightDeliveredAtCityB(), 0.0001);
     }
-}package be.pxl.cargo.service;
-
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
-
-@ExtendWith(MockitoExtension.class)
-class CargoServiceTest {
-
 }
